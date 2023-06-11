@@ -1,1 +1,2 @@
 # homeworkJS
+Repository for homework
