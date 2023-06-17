@@ -66,19 +66,16 @@ function compareNumbers2 (num1, num2) {
 console.log(`Количество чисел, совпадающих только по значению = ${compareNumbers2(4321,1010)}`)
 
 
-// 5. сортировка массива по возрастанию
-function sortAsc(arr){
-    arr.sort(function(a,b) {return a-b})  
-    return arr 
+// 5. сортировка массива по возрастанию/убыванию
+function sortSmart(arr, descending) {
+    if (descending) {
+        return arr.sort(function(a,b) {return b-a})
+    } else {
+        return arr.sort(function(a,b) {return a-b})
+    }
 }
-console.log(`Сортировка массива по возрастанию - ${sortAsc([1,3,14,2,54,13,99])}`)
-
-// сортировка массива по убыванию
-function sortDesc(arr){
-    arr.sort(function(a,b) {return b-a})  
-    return arr 
-}
-console.log(`Сортировка массива по убыванию - ${sortDesc([1,3,14,2,54,13,99])}`)
+console.log(`Сортировка массива по убыванию - ${sortSmart([1,3,14,2,54,13,99],true)}`)
+console.log(`Сортировка массива по возрастанию - ${sortSmart([1,3,14,2,54,13,99],false)}`)
 
 
 // 6. удалить из массива все повторяющиеся элементы
