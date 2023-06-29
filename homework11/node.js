@@ -55,8 +55,10 @@ class TourOperator {
         return cruise;
     }
     getTours() {
-        return this.tours.map(tour => ({ ...tour, price: tour.price * (1-this.discount/100)}))
-    }    
+        return this.tours
+            .map(tour => ({ ...tour, price: tour.price * (1 - this.discount / 100) }))
+            .sort((a, b) => a.price - b.price)
+    }
     filterTours(filter) {
         return this.getTours().filter(filter)
     }
@@ -115,8 +117,11 @@ const healingMinsk = tourOperator.createHealing('Belarus', 700, 14, true, 5)
 const shoppingZara = tourOperator.createShopping('Poland', 100, 2, false, 20)
 const cruiseNorway = tourOperator.createCruise('Norway', 500, 4, true, 'luxury')
 
-console.log('USUAL CLIENT')
-console.table(tourOperator.filterTours(tour => tour.price<3000 && tour.days>=7 && tour.food==true))
+console.log('ALL TOURS')
+console.table(tourOperator.getTours())
+
+console.log('FILTERED TOURS FOR USUAL CLIENT')
+console.table(tourOperator.filterTours(tour => tour.price < 1500 && tour.days >= 7))
 
 class PremiumClient {
     constructor(tourOperator) {
@@ -132,5 +137,5 @@ class PremiumClient {
 }
 const premiumClient = new PremiumClient(tourOperator)
 
-console.log('PREMIUM CLIENT')
-console.table(premiumClient.filterTours(tour => tour.price<3000 && tour.days>=7 && tour.food==true))
+console.log('FILTERED TOURS FOR PREMIUM CLIENT')
+console.table(premiumClient.filterTours(tour => tour.price < 3000 && tour.days >= 7 && tour.food == true))
