@@ -22,6 +22,8 @@
 возможность выбора транспорта, питания и числа дней. Реализовать
 выбор и сортировку путевок. */
 
+/* Use Patterns: FactoryMethod (to produce tours by tourOperators), decorator (to add discount for clients). */
+
 class TourOperator {
     constructor() {
         this.discount = 0;
