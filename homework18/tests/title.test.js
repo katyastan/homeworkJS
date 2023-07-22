@@ -1,16 +1,11 @@
 /* Настроить Selenium Webdriver  и с помощью selenium-webdriver написать 3 теста:
 
-1. Перейти на страницу поиска;
-2. Ввести driver в поиск;
-3. Проверить что первая ссылка содержит слово driver;
-
 1. Открыть в меню ""Дополнительно""
 2. Нажать ""Mobile Emulation""
 3. Проверить что url содержит /mobile-emulation */
 
 const { Builder, By} = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
-// const {expect} = require('chai');
 
 let opts = new chrome.Options()
 opts.setBrowserVersion('114')
@@ -24,7 +19,7 @@ const siteURL = 'https://chromedriver.chromium.org/home';
 jest.setTimeout(60000)
 
 // Write jest tests
-describe('WebDriver', () => {
+describe('WebDriver firs test', () => {
     test('Check Title content on site', async () => {
 
         // 1. зайти на сайт https://chromedriver.chromium.org/home;
