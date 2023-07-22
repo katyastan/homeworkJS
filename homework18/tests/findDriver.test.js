@@ -1,20 +1,18 @@
-/* 1. Перейти на страницу поиска;
-   2. Ввести driver в поиск;
-   3. Проверить что первая ссылка содержит слово driver */
-
-const { Builder, By, until} = require("selenium-webdriver");
+// Test for find the 'driver' in the Search
+const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
+
+const siteURL = 'https://chromedriver.chromium.org/home';
 
 let opts = new chrome.Options()
 opts.setBrowserVersion('114')
+
 let driver = new Builder()
     .forBrowser('chrome')
     .setChromeOptions(opts)
     .build();
-const actions = driver.actions({async: true});
-const siteURL = 'https://chromedriver.chromium.org/home';
 
-jest.setTimeout(60000)
+jest.setTimeout(30000)
 
 // Write jest tests
 describe('WebDriver second test', () => {
@@ -30,9 +28,9 @@ describe('WebDriver second test', () => {
         await searchField.sendKeys('driver');
         const searchButton = await driver.findElement(By.xpath('//*[@role="button" and @aria-label="Search"]'));
         await searchButton.click();
-        
+
         // 3. Проверить что первая ссылка содержит слово driver
-        const firstFoundLink = await driver.wait(until.elementLocated(By.xpath('//*[@class="DLXGJd"]/div/div[1]/div[1]/div[1]/b'), 10000))
+        const firstFoundLink = await driver.wait(until.elementLocated(By.xpath('//*[text()="Results from this site"]/following-sibling::div/div[1]//b'), 10000))
         expect(await firstFoundLink.getText()).toEqual('driver')
 
         await driver.quit();

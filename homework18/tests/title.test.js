@@ -1,22 +1,20 @@
-/* Настроить Selenium Webdriver  и с помощью selenium-webdriver написать 3 теста:
-
-1. Открыть в меню ""Дополнительно""
-2. Нажать ""Mobile Emulation""
-3. Проверить что url содержит /mobile-emulation */
-
-const { Builder, By} = require("selenium-webdriver");
+// Test for checking titles
+const { Builder, By } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
+
+const siteURL = 'https://chromedriver.chromium.org/home';
 
 let opts = new chrome.Options()
 opts.setBrowserVersion('114')
+
 let driver = new Builder()
     .forBrowser('chrome')
     .setChromeOptions(opts)
     .build();
-const actions = driver.actions({async: true});
-const siteURL = 'https://chromedriver.chromium.org/home';
 
-jest.setTimeout(60000)
+const actions = driver.actions({ async: true });
+
+jest.setTimeout(30000)
 
 // Write jest tests
 describe('WebDriver firs test', () => {
@@ -39,7 +37,7 @@ describe('WebDriver firs test', () => {
 
         // 5. проверить что новый тайтл стал ""Chrome Extensions"";
         expect(await newMainTitle.getText()).toEqual('Chrome Extensions')
-       
+
         await driver.quit();
     })
 });
