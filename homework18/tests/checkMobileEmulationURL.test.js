@@ -1,4 +1,3 @@
-// Test to check the 'Mobile Emulation' URL
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
@@ -14,13 +13,11 @@ let driver = new Builder()
 
 jest.setTimeout(30000)
 
-// Write jest tests
-describe('WebDriver second test', () => {
-    test('Check Search with Driver', async () => {
+describe('Check URL', () => {
+    test("Test to check the 'Mobile Emulation' URL", async () => {
         await driver.get(siteURL);
 
         // 1. Открыть в меню ""Дополнительно""
-        await driver.get(siteURL);
         const menuMore = await driver.findElement(By.xpath('//a[text()="More"]'))
         await menuMore.click();
 
@@ -31,7 +28,8 @@ describe('WebDriver second test', () => {
         // 3. Проверить что url содержит /mobile-emulation
         const mobileEmulationURL = await driver.getCurrentUrl();
         expect(mobileEmulationURL.includes('/mobile-emulation')).toBe(true);
-
-        await driver.quit();
+    })
+    afterAll(() => {
+        driver.quit();    
     })
 });

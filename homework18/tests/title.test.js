@@ -1,4 +1,3 @@
-// Test for checking titles
 const { Builder, By } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
@@ -12,13 +11,10 @@ let driver = new Builder()
     .setChromeOptions(opts)
     .build();
 
-const actions = driver.actions({ async: true });
-
 jest.setTimeout(30000)
 
-// Write jest tests
-describe('WebDriver firs test', () => {
-    test('Check Title content on site', async () => {
+describe('Titles test', () => {
+    test('Test for checking titles', async () => {
 
         // 1. зайти на сайт https://chromedriver.chromium.org/home;
         await driver.get(siteURL);
@@ -33,11 +29,12 @@ describe('WebDriver firs test', () => {
 
         // 4. сделать хайлайт для нового основного тайтла;
         const newMainTitle = await driver.findElement(By.xpath('//*[@id="h.p_ID_13"]/span'));
-        await actions.doubleClick(newMainTitle).perform();
+        driver.actions().doubleClick(newMainTitle).perform();
 
         // 5. проверить что новый тайтл стал ""Chrome Extensions"";
         expect(await newMainTitle.getText()).toEqual('Chrome Extensions')
-
-        await driver.quit();
+    })
+    afterAll(() => {
+        driver.quit();    
     })
 });

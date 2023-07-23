@@ -1,4 +1,3 @@
-// Test for find the 'driver' in the Search
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
@@ -14,9 +13,8 @@ let driver = new Builder()
 
 jest.setTimeout(30000)
 
-// Write jest tests
-describe('WebDriver second test', () => {
-    test('Check Search with Driver', async () => {
+describe('Find "driver"', () => {
+    test("Test for find the 'driver' in the Search", async () => {
         await driver.get(siteURL);
 
         // 1. Перейти на страницу поиска
@@ -32,7 +30,8 @@ describe('WebDriver second test', () => {
         // 3. Проверить что первая ссылка содержит слово driver
         const firstFoundLink = await driver.wait(until.elementLocated(By.xpath('//*[text()="Results from this site"]/following-sibling::div/div[1]//b'), 10000))
         expect(await firstFoundLink.getText()).toEqual('driver')
-
-        await driver.quit();
+    })
+    afterAll(() => {
+        driver.quit();    
     })
 });
