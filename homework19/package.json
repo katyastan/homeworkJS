@@ -1,0 +1,27 @@
+{
+  "name": "homework19",
+  "version": "1.0.0",
+  "description": "homeworkLesson19",
+  "main": "node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badisi/wdio-harness": "^3.0.2",
+    "@wdio/allure-reporter": "^8.12.3",
+    "@wdio/cli": "^8.13.5",
+    "@wdio/local-runner": "^8.13.4",
+    "@wdio/mocha-framework": "^8.12.1",
+    "@wdio/spec-reporter": "^8.12.2",
+    "chromedriver": "^114.0.3",
+    "eslint": "^8.45.0",
+    "wdio-chromedriver-service": "^8.1.1",
+    "wdio-wait-for": "^3.0.6"
+  },
+  "dependencies": {
+    "chai": "^4.3.7"
+  }
+}
