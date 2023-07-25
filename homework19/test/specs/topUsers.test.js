@@ -1,26 +1,16 @@
 const {expect} = require('chai')
 
-// Ensure that "Google" and "Microsoft" logos listed in "Who is using WebdriverIO?" section.
-
-describe('Top users', function () {
-    it('Check if Google specified', async () => {
-        // await browser.url('https://webdriver.io/');
-        // await $('//nav//a[text()="API"]').click();
-        // await $('//h1[text()="Introduction"]').waitForDisplayed();
-        // await $('//nav//a[text()="element"]').click();
-        // await $('//h1[text()="The Element Object"]').waitForDisplayed()
-        // expect(
-        //     await $('//h1[text()="The Element Object"]').getText()
-        // ).to.equal('The Element Object')
+describe('Who is using WebdriverIO?', function () {
+    it('Check if Google logo specified among users of WebdriverIO', async () => {
+        await browser.url('https://webdriver.io/');
+        expect(
+            await $('//a[@href="https://developers.google.com/blockly/"]').isExisting()
+        ).to.equal(true)
     })
-    it('Check if Microsoft specified', async () => {
-        // await browser.url('https://webdriver.io/');
-        // await $('//nav//a[text()="API"]').click();
-        // await $('//h1[text()="Introduction"]').waitForDisplayed();
-        // await $('//nav//a[text()="element"]').click();
-        // await $('//h1[text()="The Element Object"]').waitForDisplayed()
-        // expect(
-        //     await $('//h1[text()="The Element Object"]').getText()
-        // ).to.equal('The Element Object')
+    it('Check if Microsoft logo specified among users of WebdriverIO', async () => {
+        await browser.url('https://webdriver.io/');
+        expect(
+            await $('//a[@href="https://www.microsoft.com/"]').isExisting()
+        ).to.equal(true)
     })
 })

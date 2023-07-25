@@ -7,7 +7,6 @@
 
 const {expect} = require('chai')
 
-// Здесь переходим в раздел API, переходим в elements, проверяем, что заголовок страницы - The Element Object
 describe('The Element Object', function () {
     it('Сhecking the title of the element documentation page', async () => {
         await browser.url('https://webdriver.io/');

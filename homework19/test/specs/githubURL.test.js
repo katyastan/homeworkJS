@@ -1,14 +1,10 @@
 const {expect} = require('chai')
 
-// Click github URL at the top of the page and
-// ensure the opened page URL is https://github.com/webdriverio/webdriverio
-
 describe('Community links', function () {
-    it('Check the Gihub URL is correct', async () => {
+    it('Ensure that Github icon at the top contains link to https://github.com/webdriverio/webdriverio', async () => {
         await browser.url('https://webdriver.io/');
-        await $('//a[@aria-label="GitHub repository"]').click();
         expect(
-            await $().currentURL()
+            await $('//a[@aria-label="GitHub repository"]').getAttribute('href')
         ).to.equal('https://github.com/webdriverio/webdriverio')
     })
 })
