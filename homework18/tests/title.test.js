@@ -29,7 +29,7 @@ describe('Titles test', () => {
 
         // 4. сделать хайлайт для нового основного тайтла;
         const newMainTitle = await driver.findElement(By.xpath('//*[@id="h.p_ID_13"]/span'));
-        driver.actions().doubleClick(newMainTitle).perform();
+        await driver.executeScript("arguments[0].style.backgroundColor = 'yellow'", newMainTitle);
 
         // 5. проверить что новый тайтл стал ""Chrome Extensions"";
         expect(await newMainTitle.getText()).toEqual('Chrome Extensions')
