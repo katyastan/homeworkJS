@@ -18,10 +18,14 @@
     "@wdio/spec-reporter": "^8.12.2",
     "chromedriver": "^114.0.3",
     "eslint": "^8.45.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-mocha": "^10.1.0",
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-wait-for": "^3.0.6"
   },
   "dependencies": {
-    "chai": "^4.3.7"
+    "allure-commandline": "^2.23.1",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }

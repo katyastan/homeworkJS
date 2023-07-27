@@ -1,26 +1,29 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": "eslint:recommended",
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
+  env: {
+    browser: true,
+    es2021: true,
+    mocha: true,
+  },
+  plugins: [
+    'mocha',
+  ],
+  extends: [
+    'plugin:mocha/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  rules: { 
+    "mocha/no-skipped-tests": "error",
+    "mocha/no-exclusive-tests": "error"
+  },
+  overrides: [
+    {
+      files: [
+        '.eslintrc.js',
+      ],
     }
-}
+  ],
+};
+
