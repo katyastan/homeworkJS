@@ -26,6 +26,11 @@
   "dependencies": {
     "allure-commandline": "^2.23.1",
     "chai": "^4.3.7",
-    "mocha": "^10.2.0"
-  }
+    "mocha": "^10.2.0",
+    "webdriverio": "^8.14.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }
