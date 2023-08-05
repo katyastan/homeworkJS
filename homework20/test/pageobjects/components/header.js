@@ -1,35 +1,35 @@
-class Header{
-    get buttonAPI(){
+class Header {
+    get buttonAPI() {
         return $('//a[contains(@class,"navbar__link") and @href="/docs/api"]');
     }
-    get buttonChangeLanguage (){
+    get buttonChangeLanguage() {
         return $('//a[@class="navbar__link"]');
     }
-    get buttonSpanishLanguage(){
+    get buttonSpanishLanguage() {
         return $('//a[@lang="es"]');
     }
-    get buttonDocs(){
+    get buttonDocs() {
         return $("//a[@href='/es/docs/gettingstarted' and contains(@class,'navbar__item')]");
     }
-    get buttonGithub(){
+    get buttonGithub() {
         return $('//a[contains(@class,"header-github-link")]');
     }
-    get searchField(){
+    get searchField() {
         return $('//button[@class="DocSearch DocSearch-Button"]');
     }
 
-    async clickButtonAPI(){
+    async clickButtonAPI() {
         await this.buttonAPI.click();
     }
-    async clickButtonChangeLanguage(){
+    async clickButtonChangeLanguage() {
         await this.buttonChangeLanguage.waitForDisplayed();
         await this.buttonChangeLanguage.click();
     }
-    async clickButtonSpanishLanguage(){
+    async clickButtonSpanishLanguage() {
         await this.buttonSpanishLanguage.waitForDisplayed();
         await this.buttonSpanishLanguage.click();
-    }    
-    async clickSearchField(){
+    }
+    async clickSearchField() {
         await this.searchField.click();
     }
 }

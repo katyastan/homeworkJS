@@ -1,16 +1,16 @@
 const BasePage = require('./basePage');
 
 class ApiPage extends BasePage {
-    get titleIntrodaction(){
+    get titleIntrodaction() {
         return $('//h2[@id="contribute"]/..//h1');
     }
-    get buttonElement(){
+    get buttonElement() {
         return $('//a[contains(@class,"menu__link--sublist") and @href="/docs/api/element"]');
-    }    
-    async waitForDisplayedTitleIntrodaction(){
+    }
+    async waitForDisplayedTitleIntrodaction() {
         await this.titleIntrodaction.waitForDisplayed();
     }
-    async clickButtonElement(){
+    async clickButtonElement() {
         await this.buttonElement.click();
     }
 }
