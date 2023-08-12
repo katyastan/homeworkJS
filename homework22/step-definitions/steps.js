@@ -1,6 +1,8 @@
 const { Given, When, Then } = require('@wdio/cucumber-framework');
 const { expect } = require('@wdio/globals')
 
+const { currentYear } = require('../helpers/constants');
+
 const header = require('../pageobjects/components/header');
 const mainPage = require('../pageobjects/mainPage');
 const apiPage = require('../pageobjects/APIPage');
@@ -35,11 +37,14 @@ When(/^I search (.*) element$/, async (word) => {
     await searchPage.search(word)
 })
 
-Then(/^I expect (.+) element should (equal|contain) text (.+)$/, async (element, typeOfValidation, text) => {
+Then(/^I expect (.+) element should (equal|contain) (text|value) (.+)$/, async (element, typeOfValidation, typeOfData, data) => {
     const foundElement = await elementsToPageMapping[element][element]
+    
+    data = typeOfData === 'text' ? data : eval(data)
+
     if (typeOfValidation === 'equal') {
-        await expect(foundElement).toHaveText(text);
+        await expect(foundElement).toHaveText(data);
     } else if  (typeOfValidation === 'contain') {
-        await expect(foundElement).toHaveTextContaining(`${text}`);
+        await expect(foundElement).toHaveTextContaining(`${data}`);
     }
 });
