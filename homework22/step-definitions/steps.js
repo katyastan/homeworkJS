@@ -1,46 +1,45 @@
-const { Given, When, Then} = require('@wdio/cucumber-framework');
-const { expect, $ } = require('@wdio/globals')
+const { Given, When, Then } = require('@wdio/cucumber-framework');
+const { expect } = require('@wdio/globals')
 
-// const LoginPage = require('../pageobjects/login.page');
-// const SecurePage = require('../pageobjects/secure.page');
-const { Browser } = require('selenium-webdriver');
+const header = require('../pageobjects/components/header');
+const mainPage = require('../pageobjects/mainPage');
+const apiPage = require('../pageobjects/APIPage');
+const elementPage = require('../pageobjects/elementPage');
+const searchPage = require('../pageobjects/searchPage');
+const driverBinariesPage = require('../pageobjects/driverBinariesPage');
 
-// const pages = {
-//     login: LoginPage
-// }
+const elementsToPageMapping = {
+    buttonAPI: header,
+    buttonElement: apiPage,
+    buttonChangeLanguage: header,
+    buttonSpanishLanguage: header,
+    searchField: header,
+    firstAnswer: searchPage,
+    titleTheElementObject: elementPage,
+    buttonDocs: header,
+    yearOnPage: mainPage,
+    titleDriverBinaries: driverBinariesPage,
+}
 
-// Given(/^I am on the (\w+) page$/, async (page) => {
-//     await pages[page].open()
-// });
-
-// When(/^I login with (\w+) and (.+)$/, async (username, password) => {
-//     await LoginPage.login(username, password)
-// }); 
-
-// Then(/^I should see a flash message saying (.*)$/, async (message) => {
-//     await expect(SecurePage.flashAlert).toBeExisting();
-//     await expect(SecurePage.flashAlert).toHaveTextContaining(message);
-// });
-const mainpage = require('../pageobjects/mainPage');
-
-
-Given(/^I navigate on (.*) page$/, async (url) => {
+Given(/^I navigate on (.+) page$/, async (url) => {
     await browser.url(url)
 });
-When(/^I click (.*) element$/, async (selector) => {
-    await $(selector).click();
+
+When(/^I click (.+) element$/, async (element) => {
+    const foundElement = await elementsToPageMapping[element][element]
+    await foundElement.waitForDisplayed();
+    await foundElement.click();
 })
-When(/^I click element button$/, async () => {
-    await $('//a[contains(@class,"menu__link--sublist") and @href="/docs/api/element"]').click();
+
+When(/^I search (.*) element$/, async (word) => {
+    await searchPage.search(word)
 })
-// Then(/^I shoud see text "The Element Object"$/, async () => {
-//     await expect (await $('//div[@class="col docItemCol_VOVn"]//h1').getText()).toEqual('The Element Object')
-// })
-Then(/^I expect (.*) element should (equal|include) text (.*)$/, async (element, typeOfValidation, text) => {
-    await $(element).waitForDisplayed()
-    if(typeOfValidation === 'equal') {
-        await expect(await (await $(element).getText())).toEqual(text);
-    } else {
-        await expect(await (await $(element).getText())).toInclude(text);
+
+Then(/^I expect (.+) element should (equal|contain) text (.+)$/, async (element, typeOfValidation, text) => {
+    const foundElement = await elementsToPageMapping[element][element]
+    if (typeOfValidation === 'equal') {
+        await expect(foundElement).toHaveText(text);
+    } else if  (typeOfValidation === 'contain') {
+        await expect(foundElement).toHaveTextContaining(`${text}`);
     }
 });
