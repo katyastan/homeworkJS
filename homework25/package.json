@@ -1,0 +1,19 @@
+{
+  "name": "homework25",
+  "version": "1.0.0",
+  "description": "homeworkLesson20",
+  "main": "node.js",
+  "scripts": {
+    "test": "npx cypress open",
+    "cy:run": "npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.17.4"
+  },
+  "devDependencies": {
+    "cypress-xpath": "^2.0.1"
+  }
+}
