@@ -1,7 +1,7 @@
 {
   "name": "homework25",
   "version": "1.0.0",
-  "description": "homeworkLesson20",
+  "description": "homeworkLesson25",
   "main": "node.js",
   "scripts": {
     "test": "npx cypress open",

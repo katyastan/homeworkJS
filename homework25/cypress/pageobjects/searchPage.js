@@ -11,7 +11,7 @@ class SearchPage extends BasePage {
         this.searchInput.type(word);
     }
     clickFirstAnswer() {
-        this.firstAnswer.first().click();
+        this.firstAnswer.first( {timeout:10000} ).click({ force: true });
     }
 }
 
